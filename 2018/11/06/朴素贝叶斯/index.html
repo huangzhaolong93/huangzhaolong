@@ -86,18 +86,18 @@
 
 
 
-<meta name="description" content="理论基础朴素贝叶斯是机器学习里的一种分类模型。本节将介绍朴素贝叶斯相关的理论基础知识。 相关知识&amp;emsp;&amp;emsp;贝叶斯学派的思想：$$先验概率+数据分布=后验概率$$  &amp;emsp;&amp;emsp;在这里举个例子帮助大家有个简单的理解：投掷一枚硬币100次，20次正面朝上，求这枚硬币正面朝上的概率$P(正)$。  频率学派：$P(正)=\frac{20}{100}=0.2$ 贝叶斯派：">
+<meta name="description" content="理论基础&amp;emsp;&amp;emsp;朴素贝叶斯是机器学习里的一种分类模型。本节将介绍朴素贝叶斯相关的理论基础知识。 相关知识&amp;emsp;&amp;emsp;贝叶斯学派的思想：$$先验概率+数据分布=后验概率$$  &amp;emsp;&amp;emsp;在这里举个例子帮助大家有个简单的理解：投掷一枚硬币100次，20次正面朝上，求这枚硬币正面朝上的概率$P(正)$。  频率学派：$P(正)=\frac{20}{100}=0.">
 <meta name="keywords" content="tag1,tag2">
 <meta property="og:type" content="article">
 <meta property="og:title" content="朴素贝叶斯-NB">
 <meta property="og:url" content="https://huangzhaolong93.github.io/2018/11/06/朴素贝叶斯/index.html">
 <meta property="og:site_name" content="未来已来">
-<meta property="og:description" content="理论基础朴素贝叶斯是机器学习里的一种分类模型。本节将介绍朴素贝叶斯相关的理论基础知识。 相关知识&amp;emsp;&amp;emsp;贝叶斯学派的思想：$$先验概率+数据分布=后验概率$$  &amp;emsp;&amp;emsp;在这里举个例子帮助大家有个简单的理解：投掷一枚硬币100次，20次正面朝上，求这枚硬币正面朝上的概率$P(正)$。  频率学派：$P(正)=\frac{20}{100}=0.2$ 贝叶斯派：">
+<meta property="og:description" content="理论基础&amp;emsp;&amp;emsp;朴素贝叶斯是机器学习里的一种分类模型。本节将介绍朴素贝叶斯相关的理论基础知识。 相关知识&amp;emsp;&amp;emsp;贝叶斯学派的思想：$$先验概率+数据分布=后验概率$$  &amp;emsp;&amp;emsp;在这里举个例子帮助大家有个简单的理解：投掷一枚硬币100次，20次正面朝上，求这枚硬币正面朝上的概率$P(正)$。  频率学派：$P(正)=\frac{20}{100}=0.">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-28T09:53:13.347Z">
+<meta property="og:updated_time" content="2019-01-03T02:24:18.093Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="朴素贝叶斯-NB">
-<meta name="twitter:description" content="理论基础朴素贝叶斯是机器学习里的一种分类模型。本节将介绍朴素贝叶斯相关的理论基础知识。 相关知识&amp;emsp;&amp;emsp;贝叶斯学派的思想：$$先验概率+数据分布=后验概率$$  &amp;emsp;&amp;emsp;在这里举个例子帮助大家有个简单的理解：投掷一枚硬币100次，20次正面朝上，求这枚硬币正面朝上的概率$P(正)$。  频率学派：$P(正)=\frac{20}{100}=0.2$ 贝叶斯派：">
+<meta name="twitter:description" content="理论基础&amp;emsp;&amp;emsp;朴素贝叶斯是机器学习里的一种分类模型。本节将介绍朴素贝叶斯相关的理论基础知识。 相关知识&amp;emsp;&amp;emsp;贝叶斯学派的思想：$$先验概率+数据分布=后验概率$$  &amp;emsp;&amp;emsp;在这里举个例子帮助大家有个简单的理解：投掷一枚硬币100次，20次正面朝上，求这枚硬币正面朝上的概率$P(正)$。  频率学派：$P(正)=\frac{20}{100}=0.">
 
 
 
@@ -412,7 +412,7 @@
       
 
       
-        <h1 id="理论基础"><a href="#理论基础" class="headerlink" title="理论基础"></a>理论基础</h1><p>朴素贝叶斯是机器学习里的一种分类模型。本节将介绍朴素贝叶斯相关的理论基础知识。</p>
+        <h1 id="理论基础"><a href="#理论基础" class="headerlink" title="理论基础"></a>理论基础</h1><p>&emsp;&emsp;朴素贝叶斯是机器学习里的一种分类模型。本节将介绍朴素贝叶斯相关的理论基础知识。</p>
 <h2 id="相关知识"><a href="#相关知识" class="headerlink" title="相关知识"></a>相关知识</h2><p>&emsp;&emsp;贝叶斯学派的思想：<br>$$先验概率+数据分布=后验概率$$  &emsp;&emsp;在这里举个例子帮助大家有个简单的理解：投掷一枚硬币100次，20次正面朝上，求这枚硬币正面朝上的概率$P(正)$。</p>
 <ul>
 <li>频率学派：$P(正)=\frac{20}{100}=0.2$</li>
@@ -581,7 +581,7 @@
 <p>对于同一个样本而言，$P(X)$都是一样的，故只需要比较<br>贝叶斯公式的分子$P(Y=0)P(X|Y=0)$和$P(Y=1)P(X|Y=1)$即可。<br>我们可以计算得到$$P(嫁)P(高、富、搓、温柔|嫁)=\frac{4}{10}\times\frac{3}{4}\times\frac{3}{4}\times\frac{1}{4}\times\frac{3}{4}=\frac{9}{640}$$</p>
 <p>$$P(不嫁)P(高、富、搓、温柔|不嫁)=\frac{6}{10}\times\frac{2}{6}\times\frac{1}{6}\times\frac{1}{6}\times\frac{3}{6}=\frac{1}{120}=\frac{9}{1080}$$</p>
 <p>可以得到：$P(嫁|高、富、搓)&gt;P(不嫁|高、富、搓)$<br>朴素贝叶斯模型就可以告诉这个女生，对于男生x：<font color="#FF0000">嫁</font> ！</p>
-<h2 id="进阶优化"><a href="#进阶优化" class="headerlink" title="进阶优化"></a>进阶优化</h2><p>由于朴素贝叶斯模型里假设特征相互独立，当计算联合概率时，就可能用到各维特征空间中概率的累乘。累乘存在一个致命的缺点：<font color="#FF0000">一旦其中一项为0，整项就为0</font>。<br>当特征很多时，非常容易出现稀疏情况，$P(x_i|Y)=0$，导致$P(X={x_1,x_2,…,x_i,…,x_n}|Y)=0$，直接导致最后的结果$P(Y|X)=0$。显然不够合理。为了避免这种情况发生，可以采取平滑策略。<br>最常见的平滑策略就是拉普拉斯平滑，即在统计计算概率时，默认某类样本中，在各维空间中各个取值至少出现了一次。如果训练样本集数量充分大时，并不会对结果产生影响，并且解决了上述概率为0的尴尬局面。</p>
+<h2 id="进阶优化"><a href="#进阶优化" class="headerlink" title="进阶优化"></a>进阶优化</h2><p>由于朴素贝叶斯模型里假设特征相互独立，当计算联合概率时，就可能用到各维特征空间中概率的累乘。累乘存在一个致命的缺点：<font color="#FF0000">一旦其中一项为0，整项就为0</font>。<br>当特征很多时，非常容易出现稀疏情况，$P(x_i|Y)=0$，导致$P(X={x_1,x_2,…,x_i,…,x_n}|Y)=0$，直接导致最后的结果$P(Y|X)=0$。显然不够合理。为了避免这种情况发生，可以采取<font color="#FF0000">平滑策略</font>。<br>最常见的平滑策略就是拉普拉斯平滑，即在统计计算概率时，默认某类样本中，在各维空间中各个取值至少出现了一次。如果训练样本集数量充分大时，并不会对结果产生影响，并且解决了上述概率为0的尴尬局面。</p>
 <h1 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h1><h2 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h2><ul>
 <li>思路简单</li>
 <li>空间复杂度低（联合概率$P(X,Y)$只需要二维存储）</li>
@@ -644,8 +644,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/11/07/逻辑斯蒂回归/" rel="prev" title="逻辑斯蒂回归">
-                逻辑斯蒂回归 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/11/07/逻辑斯蒂回归/" rel="prev" title="逻辑斯蒂回归-LR">
+                逻辑斯蒂回归-LR <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -821,7 +821,7 @@
     <footer id="footer" class="footer">
       <div class="footer-inner">
         <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -835,7 +835,7 @@
     本站访客数:<span id="busuanzi_value_site_uv"></span>
   </span>
   <span class="post-meta-divider">|</span>
-  <span class="post-count">博客全站共5.1k字</span>
+  <span class="post-count">博客全站共5.5k字</span>
 </div>
 
 

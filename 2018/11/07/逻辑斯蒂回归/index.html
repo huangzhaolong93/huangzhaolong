@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="tag1,tag2,">
 
 
 
@@ -86,18 +86,18 @@
 
 
 
-<meta name="description" content="一山更比一山高">
-<meta name="keywords" content="关键词">
+<meta name="description" content="理论基础&amp;emsp;&amp;emsp;逻辑斯蒂回归是机器学习里的一种分类模型。本节将介绍逻辑斯蒂回归相关的理论基础知识。 相关知识&amp;emsp;&amp;emsp;最大似然的思想：假如有一个罐子，罐子里有黑白两种颜色的球，球的数目不知，球的颜色比例也不知。这时候我们从罐子中有放回的拿出10个球，即拿出1个球，记录颜色，再放回罐中摇匀，此操作重复10次。假设记录结果显示拿出了7个白球，3个黑球。请问罐中黑白球比例最">
+<meta name="keywords" content="tag1,tag2">
 <meta property="og:type" content="article">
-<meta property="og:title" content="逻辑斯蒂回归">
+<meta property="og:title" content="逻辑斯蒂回归-LR">
 <meta property="og:url" content="https://huangzhaolong93.github.io/2018/11/07/逻辑斯蒂回归/index.html">
 <meta property="og:site_name" content="未来已来">
-<meta property="og:description" content="一山更比一山高">
+<meta property="og:description" content="理论基础&amp;emsp;&amp;emsp;逻辑斯蒂回归是机器学习里的一种分类模型。本节将介绍逻辑斯蒂回归相关的理论基础知识。 相关知识&amp;emsp;&amp;emsp;最大似然的思想：假如有一个罐子，罐子里有黑白两种颜色的球，球的数目不知，球的颜色比例也不知。这时候我们从罐子中有放回的拿出10个球，即拿出1个球，记录颜色，再放回罐中摇匀，此操作重复10次。假设记录结果显示拿出了7个白球，3个黑球。请问罐中黑白球比例最">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-07T08:05:05.202Z">
+<meta property="og:updated_time" content="2019-01-03T02:42:38.062Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="逻辑斯蒂回归">
-<meta name="twitter:description" content="一山更比一山高">
+<meta name="twitter:title" content="逻辑斯蒂回归-LR">
+<meta name="twitter:description" content="理论基础&amp;emsp;&amp;emsp;逻辑斯蒂回归是机器学习里的一种分类模型。本节将介绍逻辑斯蒂回归相关的理论基础知识。 相关知识&amp;emsp;&amp;emsp;最大似然的思想：假如有一个罐子，罐子里有黑白两种颜色的球，球的数目不知，球的颜色比例也不知。这时候我们从罐子中有放回的拿出10个球，即拿出1个球，记录颜色，再放回罐中摇匀，此操作重复10次。假设记录结果显示拿出了7个白球，3个黑球。请问罐中黑白球比例最">
 
 
 
@@ -133,7 +133,7 @@
 
 
 
-  <title>逻辑斯蒂回归 | 未来已来</title>
+  <title>逻辑斯蒂回归-LR | 未来已来</title>
   
 
 
@@ -331,7 +331,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">逻辑斯蒂回归</h1>
+          <h1 class="post-title" itemprop="name headline">逻辑斯蒂回归-LR</h1>
         
 
         <div class="post-meta">
@@ -375,7 +375,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  0
+                  399
                 </span>
               
 
@@ -412,7 +412,9 @@
       
 
       
-        
+        <h1 id="理论基础"><a href="#理论基础" class="headerlink" title="理论基础"></a>理论基础</h1><p>&emsp;&emsp;逻辑斯蒂回归是机器学习里的一种分类模型。本节将介绍逻辑斯蒂回归相关的理论基础知识。</p>
+<h2 id="相关知识"><a href="#相关知识" class="headerlink" title="相关知识"></a>相关知识</h2><p>&emsp;&emsp;最大似然的思想：假如有一个罐子，罐子里有黑白两种颜色的球，球的数目不知，球的颜色比例也不知。这时候我们从罐子中有放回的拿出10个球，即拿出1个球，记录颜色，再放回罐中摇匀，此操作重复10次。假设记录结果显示拿出了7个白球，3个黑球。请问罐中黑白球比例最可能是多少？大部分人都会毫不犹豫的给出答案，$黑:白=3:7$。这背后运用到理论支持其实就是最大似然的思想。<br>&emsp;&emsp;似然，指的就是使这种情况发生。最大似然就是使这种情况最大概率发生。接下来，我们来看看最大似然思想是如何得到这样的结果。<br>&emsp;&emsp;假设抽到黑球的概率是$P$,则抽到白球的概率就是$1-P$。此时抽了10次，抽到了7个白球3个黑球，这种情况的概率就是$P(3黑7白)=P^3(1-P)^7$。为了是这种情况最大概率发生，我们可以得到$$arg\,\max_{P} P^3(1-P)^7$$令导数为0，得到公式$$3P^2(1-P)^7+(-7)P^3(1-P)^6=0$$解得P=0.3.故抽到黑球的比例是0.3，黑球和白球的比例就是$3:7$。</p>
+
       
     </div>
     
@@ -436,6 +438,14 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/tag1/" rel="tag"># tag1</a>
+          
+            <a href="/tags/tag2/" rel="tag"># tag2</a>
+          
+        </div>
       
 
       
@@ -510,8 +520,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -590,6 +609,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#理论基础"><span class="nav-number">1.</span> <span class="nav-text">理论基础</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#相关知识"><span class="nav-number">1.1.</span> <span class="nav-text">相关知识</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       <div id="music163player" class="music163">
       <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=491962&auto=1&height=66"></iframe>
@@ -608,7 +643,7 @@
     <footer id="footer" class="footer">
       <div class="footer-inner">
         <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -622,7 +657,7 @@
     本站访客数:<span id="busuanzi_value_site_uv"></span>
   </span>
   <span class="post-meta-divider">|</span>
-  <span class="post-count">博客全站共5.1k字</span>
+  <span class="post-count">博客全站共5.5k字</span>
 </div>
 
 
@@ -1114,6 +1149,26 @@
   
 
   
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
   
 
 
