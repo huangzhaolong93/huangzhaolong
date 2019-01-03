@@ -94,7 +94,7 @@
 <meta property="og:site_name" content="未来已来">
 <meta property="og:description" content="理论基础&amp;emsp;&amp;emsp;逻辑斯蒂回归是机器学习里的一种分类模型。本节将介绍逻辑斯蒂回归相关的理论基础知识。 相关知识&amp;emsp;&amp;emsp;最大似然的思想：假如有一个罐子，罐子里有黑白两种颜色的球，球的数目不知，球的颜色比例也不知。这时候我们从罐子中有放回的拿出10个球，即拿出1个球，记录颜色，再放回罐中摇匀，此操作重复10次。假设记录结果显示拿出了7个白球，3个黑球。请问罐中黑白球比例最">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-03T02:42:38.062Z">
+<meta property="og:updated_time" content="2019-01-03T03:51:39.477Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="逻辑斯蒂回归-LR">
 <meta name="twitter:description" content="理论基础&amp;emsp;&amp;emsp;逻辑斯蒂回归是机器学习里的一种分类模型。本节将介绍逻辑斯蒂回归相关的理论基础知识。 相关知识&amp;emsp;&amp;emsp;最大似然的思想：假如有一个罐子，罐子里有黑白两种颜色的球，球的数目不知，球的颜色比例也不知。这时候我们从罐子中有放回的拿出10个球，即拿出1个球，记录颜色，再放回罐中摇匀，此操作重复10次。假设记录结果显示拿出了7个白球，3个黑球。请问罐中黑白球比例最">
@@ -375,7 +375,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  399
+                  714
                 </span>
               
 
@@ -391,7 +391,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1
+                  2
                 </span>
               
             </div>
@@ -414,6 +414,13 @@
       
         <h1 id="理论基础"><a href="#理论基础" class="headerlink" title="理论基础"></a>理论基础</h1><p>&emsp;&emsp;逻辑斯蒂回归是机器学习里的一种分类模型。本节将介绍逻辑斯蒂回归相关的理论基础知识。</p>
 <h2 id="相关知识"><a href="#相关知识" class="headerlink" title="相关知识"></a>相关知识</h2><p>&emsp;&emsp;最大似然的思想：假如有一个罐子，罐子里有黑白两种颜色的球，球的数目不知，球的颜色比例也不知。这时候我们从罐子中有放回的拿出10个球，即拿出1个球，记录颜色，再放回罐中摇匀，此操作重复10次。假设记录结果显示拿出了7个白球，3个黑球。请问罐中黑白球比例最可能是多少？大部分人都会毫不犹豫的给出答案，$黑:白=3:7$。这背后运用到理论支持其实就是最大似然的思想。<br>&emsp;&emsp;似然，指的就是使这种情况发生。最大似然就是使这种情况最大概率发生。接下来，我们来看看最大似然思想是如何得到这样的结果。<br>&emsp;&emsp;假设抽到黑球的概率是$P$,则抽到白球的概率就是$1-P$。此时抽了10次，抽到了7个白球3个黑球，这种情况的概率就是$P(3黑7白)=P^3(1-P)^7$。为了是这种情况最大概率发生，我们可以得到$$arg\,\max_{P} P^3(1-P)^7$$令导数为0，得到公式$$3P^2(1-P)^7+(-7)P^3(1-P)^6=0$$解得P=0.3.故抽到黑球的比例是0.3，黑球和白球的比例就是$3:7$。</p>
+<h2 id="模型特点"><a href="#模型特点" class="headerlink" title="模型特点"></a>模型特点</h2><ul>
+<li>逻辑斯蒂回归的模型能力：<strong>分类</strong><br>&emsp;给定样本x的特征$ X=\lbrace x_1,x_2,…,x_n\rbrace $,判断样本的标签$Y$。  </li>
+<li>逻辑斯蒂回归的学习方法：<strong>有监督学习</strong><br>&emsp;需要有训练样本对模型进行训练。</li>
+<li>逻辑斯蒂回归的模型类型：<strong>判别式模型</strong><br>&emsp;通过训练的特征$X$和类别$Y$，直接计算$P(Y|X)$作为模型，直接根据样本的特征$X$计算类别$Y$。</li>
+</ul>
+<h2 id="模型推导"><a href="#模型推导" class="headerlink" title="模型推导"></a>模型推导</h2><p>&emsp;&emsp;最大似然的思想可以总结为”透过现象看本质”。根据上面黑白球的例子，现象就是抽了10个球，3黑7白，本质就是抽到黑球的概率是0.3。而类比在逻辑斯蒂回归中，现象就是训练样本的特征和标签，本质就是逻辑斯蒂回归(LR)分类器本身。我们的任务就是寻找LR分类器的参数，使得训练样本的特征和标签出现的概率最大。</p>
+<p>&emsp;&emsp;假设我们有如下m个样本，每个样本有n维特征：<br>$$\lbrace x_1^{(1)},x_2^{(1)},…,x_n^{(1)},y^{(1)}\rbrace,\lbrace x_1^{(2)},x_2^{(2)},…,x_n^{(2)},y^{(2)}\rbrace,…,\lbrace x_1^{(m)},x_2^{(m)},…,x_n^{(m)},y^{(m)}\rbrace$$</p>
 
       
     </div>
@@ -618,7 +625,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#理论基础"><span class="nav-number">1.</span> <span class="nav-text">理论基础</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#相关知识"><span class="nav-number">1.1.</span> <span class="nav-text">相关知识</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#理论基础"><span class="nav-number">1.</span> <span class="nav-text">理论基础</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#相关知识"><span class="nav-number">1.1.</span> <span class="nav-text">相关知识</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模型特点"><span class="nav-number">1.2.</span> <span class="nav-text">模型特点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模型推导"><span class="nav-number">1.3.</span> <span class="nav-text">模型推导</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -657,7 +664,7 @@
     本站访客数:<span id="busuanzi_value_site_uv"></span>
   </span>
   <span class="post-meta-divider">|</span>
-  <span class="post-count">博客全站共5.5k字</span>
+  <span class="post-count">博客全站共5.9k字</span>
 </div>
 
 
