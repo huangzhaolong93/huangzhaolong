@@ -94,10 +94,12 @@
 <meta property="og:site_name" content="未来已来">
 <meta property="og:description" content="理论基础&amp;emsp;&amp;emsp;逻辑斯蒂回归是机器学习里的一种分类模型。本节将介绍逻辑斯蒂回归相关的理论基础知识。 相关知识&amp;emsp;&amp;emsp;最大似然的思想：假如有一个罐子，罐子里有黑白两种颜色的球，球的数目不知，球的颜色比例也不知。这时候我们从罐子中有放回的拿出10个球，即拿出1个球，记录颜色，再放回罐中摇匀，此操作重复10次。假设记录结果显示拿出了7个白球，3个黑球。请问罐中黑白球比例最">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-03T03:51:39.477Z">
+<meta property="og:image" content="http://pjnwg6wvx.bkt.clouddn.com/sigmoid.png">
+<meta property="og:updated_time" content="2019-01-03T12:39:58.188Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="逻辑斯蒂回归-LR">
 <meta name="twitter:description" content="理论基础&amp;emsp;&amp;emsp;逻辑斯蒂回归是机器学习里的一种分类模型。本节将介绍逻辑斯蒂回归相关的理论基础知识。 相关知识&amp;emsp;&amp;emsp;最大似然的思想：假如有一个罐子，罐子里有黑白两种颜色的球，球的数目不知，球的颜色比例也不知。这时候我们从罐子中有放回的拿出10个球，即拿出1个球，记录颜色，再放回罐中摇匀，此操作重复10次。假设记录结果显示拿出了7个白球，3个黑球。请问罐中黑白球比例最">
+<meta name="twitter:image" content="http://pjnwg6wvx.bkt.clouddn.com/sigmoid.png">
 
 
 
@@ -375,7 +377,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  714
+                  1.5k
                 </span>
               
 
@@ -391,7 +393,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  2
+                  6
                 </span>
               
             </div>
@@ -419,8 +421,10 @@
 <li>逻辑斯蒂回归的学习方法：<strong>有监督学习</strong><br>&emsp;需要有训练样本对模型进行训练。</li>
 <li>逻辑斯蒂回归的模型类型：<strong>判别式模型</strong><br>&emsp;通过训练的特征$X$和类别$Y$，直接计算$P(Y|X)$作为模型，直接根据样本的特征$X$计算类别$Y$。</li>
 </ul>
-<h2 id="模型推导"><a href="#模型推导" class="headerlink" title="模型推导"></a>模型推导</h2><p>&emsp;&emsp;最大似然的思想可以总结为”透过现象看本质”。根据上面黑白球的例子，现象就是抽了10个球，3黑7白，本质就是抽到黑球的概率是0.3。而类比在逻辑斯蒂回归中，现象就是训练样本的特征和标签，本质就是逻辑斯蒂回归(LR)分类器本身。我们的任务就是寻找LR分类器的参数，使得训练样本的特征和标签出现的概率最大。</p>
-<p>&emsp;&emsp;假设我们有如下m个样本，每个样本有n维特征：<br>$$\lbrace x_1^{(1)},x_2^{(1)},…,x_n^{(1)},y^{(1)}\rbrace,\lbrace x_1^{(2)},x_2^{(2)},…,x_n^{(2)},y^{(2)}\rbrace,…,\lbrace x_1^{(m)},x_2^{(m)},…,x_n^{(m)},y^{(m)}\rbrace$$</p>
+<h2 id="模型推导"><a href="#模型推导" class="headerlink" title="模型推导"></a>模型推导</h2><p>&emsp;&emsp;最大似然的思想可以总结为”透过现象看本质”。根据上面黑白球的例子，现象就是抽了10个球，3黑7白，本质就是抽到黑球的概率是0.3。而类比在逻辑斯蒂回归中，现象就是训练样本的<font color="#FF0000">特征和标签</font>，本质就是逻辑斯蒂回归(LR)模型的<font color="#FF0000">模型参数</font>。我们的任务就是寻找LR模型的参数，使得训练样本的特征和标签出现的概率最大。<br>&emsp;&emsp;假设我们有如下m个样本，每个样本有n维特征：<br>$$\lbrace x_1^{(1)},x_2^{(1)},…,x_n^{(1)},y^{(1)}\rbrace,\lbrace x_1^{(2)},x_2^{(2)},…,x_n^{(2)},y^{(2)}\rbrace,…,\lbrace x_1^{(m)},x_2^{(m)},…,x_n^{(m)},y^{(m)}\rbrace$$&emsp;&emsp;标签$y\in{0,1}$。LR模型的模型参数为$\theta$,根据最大似然的思想，我们认为这m个样本是已经发生的现实情况，故将问题转化为$$arg\,\max_{\theta}\prod_{x_i\in X}{P(Y=0|x_i,\theta)}^{(1-y_i)}{P(Y=1|x_i,\theta)}^{y_i}$$&emsp;&emsp;其中，$P(Y|X,\theta)$就是LR模型。<br>&emsp;&emsp;我们可以看到，逻辑斯蒂回归模型其实是一个分类模型，并不是回归模型。那为什么会有这么一个名字呢？笔者认为逻辑斯蒂回归可以拆解为<font color="#FF0000">逻辑斯蒂(lnistic)+线性回归</font>。线性回归模型是一个回归模型，模型可以表示为$$y=\theta_1x_1+\theta_2x_2+…+\theta_nx_n=\mathrm{\theta}^\mathrm{T}\mathrm{x}$$&emsp;&emsp;模型的取值为$-\infty\sim+\infty$。那如何转化为分类问题呢，就需要一个函数映射，将$-\infty\sim+\infty$映射成$0\sim1$(概率表示)且具有连续、光滑、严格单调和关于中点中心堆成。而lnistic函数(sigmoid)恰好满足所有的需求。lnistic函数为$y=\frac{1}{1+e^{-x}}$。绘制函数图像的代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">import matplotlib.pyplot as plt     </span><br><span class="line">import numpy as np </span><br><span class="line">import math</span><br><span class="line">&apos;&apos;&apos;</span><br><span class="line">def sigmoid(x):</span><br><span class="line">    return (1/(1+math.exp(-x)))</span><br><span class="line">#如果用上面的sigmoid，会导致分母溢出而报错，推荐用下面的sigmoid自定义函数</span><br><span class="line">print(sigmoid(-10000000))</span><br><span class="line">&apos;&apos;&apos;</span><br><span class="line">def sigmoid(x):</span><br><span class="line">    return math.exp(-np.lnaddexp(0, -x))</span><br><span class="line">    </span><br><span class="line">x = np.arange(-10., 10., 0.2)</span><br><span class="line">y = [ sigmoid(x_i) for x_i in x]</span><br><span class="line">plt.plot(x, y)     </span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="http://pjnwg6wvx.bkt.clouddn.com/sigmoid.png" alt="Alt text"></p>
+<p>&emsp;&emsp;综合lnistic函数和线性回归模型函数，我们可以得到逻辑斯蒂回归模型的模型函数$$y=\frac{1}{1+e^{-\mathrm{\theta}^T\mathrm{x}}}$$&emsp;&emsp;我们令$h(\theta,x)$表示LR模型的模型函数，即$h(\theta,x)=\frac{1}{1+e^{-\theta^\mathrm{T}x}}$。如果$h(\theta,x)=0.8$，我们可以认为该样本有$0.8$的概率是正样本，$0.2$的概率是负样本，即$P(y=1|x,\theta) = h(\theta,x)$和$P(y=0|x,\theta) = 1-h(\theta,x)$。将LR的模型函数代回到最大似然的求解问题中，得到$$arg\,\max_{\theta}\prod_{x_i\in X}(1-h(\theta,x))^{(1-y_i)}h(\theta,x)^{y_i}$$&emsp;&emsp;由于是累乘，我们使用单调的算子$ln(\cdot)$将累乘变成累加，且不影响最终结果。得到$$arg\,\max_{\theta}\sum_{x_i\in X}(1-y_i)\ln (1-h(\theta,x))+y_i\ln h(\theta,x)$$&emsp;&emsp;我们令$$L(\theta)=\sum_{x_i\in X}(1-y_i)\ln (1-h(\theta,x))+y_i\ln h(\theta,x)$$&emsp;&emsp;若要解上述的$argmax$，则需要$L^\prime(\theta)=0$且$L^{\prime\prime}(\theta)&lt;0$。根据LR模型的函数，有<br>$$\begin{eqnarray}L(\theta)<br>        &amp;=&amp;\sum_{x_i\in X}(1-y_i)\ln (1-\frac{1}{1+e^{-\mathrm{\theta}^T\mathrm{x}}})+y_i\ln \frac{1}{1+e^{-\mathrm{\theta}^T\mathrm{x}}}\<br>        &amp;=&amp;\sum_{x_i\in X}y_i(\mathrm{\theta}^T\mathrm{x})-\ln(1+e^{-\mathrm{\theta}^T\mathrm{x}})<br>    \end{eqnarray}$$&emsp;&emsp;那么$L(\theta)$关于$\theta_j$的偏导数为$$\begin{eqnarray}\frac{\partial L(\theta)}{\partial \theta_j}<br>    &amp;=&amp;\sum_{x_i\in X}{y_ix_{ij}-x_{ij}\frac{1}{1+e^{-\mathrm{\theta}^T\mathrm{x}}}}\<br>    &amp;=&amp;\sum_{x_i\in X}x_{ij}(y_i-h(\theta,x_i))\end{eqnarray}$$</p>
 
       
     </div>
@@ -664,7 +668,7 @@
     本站访客数:<span id="busuanzi_value_site_uv"></span>
   </span>
   <span class="post-meta-divider">|</span>
-  <span class="post-count">博客全站共5.9k字</span>
+  <span class="post-count">博客全站共6.6k字</span>
 </div>
 
 
